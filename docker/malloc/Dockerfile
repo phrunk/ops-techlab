@@ -1,11 +1,10 @@
 FROM centos:7
 
-ADD malloc.c /tmp
 RUN yum -y update && \
-    yum -y install gcc && \
-    gcc -o /usr/local/bin/malloc /tmp/malloc.c && \
-    yum -y history undo last
+    yum -y install python-flask && \
+    yum clean all
+ADD malloc.py /usr/local/bin
 
 EXPOSE 8000
 
-CMD ["/usr/local/bin/malloc"]
+CMD ["/usr/local/bin/malloc.py"]
